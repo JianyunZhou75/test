@@ -3,3 +3,8 @@ extends layout
 block content
   h1= title
   p Greetings! Welcome to #{title}
+  form(action='http://localhost:3000/store/message', method='post')
+    input(type='text',name ='message',placeholder='Enter a message',size ='40')
+    input(type='Submit',name='submit',value='submit')
+ 
+
