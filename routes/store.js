@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('store', { title: 'Store' });
+  res.render('store', { title: 'Store', messageURL: process.env.MESSAGE_URL});
 });
 
 module.exports = router;
@@ -13,3 +13,4 @@ router.route('/message')
           console.log('Receiving message:' + req.body.message);
           res.send('Message was:' + req.body.message);
         });
+
