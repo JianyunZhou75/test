@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('store', { title: 'Store', searchURL: process.env.SEARCH_URL, messageURL: process.env.MESSAGE_URL});
 });
 
+<<<<<<< HEAD
 
 
 
@@ -73,6 +74,28 @@ router.route('/message')
  
  
 
+=======
+module.exports = router; 
+
+router.route('/message')
+ .post(function (req, res, next) {
+ var txtMessage = (req.body.message || 'empty message');
+ MongoClient.connect(mongoURL, function(err, db) {
+ console.log("Connected to database");
+ db.collection('messages').insert({'message': txtMessage}, {w: 1 }, function (err, item) {
+ if (err) {
+ console.log('Error storing message in database: ' + err);
+ db.close();
+ res.status(400).send('Error, unable to store message: ' + txtMessage);
+ } else {
+ db.close();
+ console.log('Message stored ok in database: ' + txtMessage)
+ res.status(200).send('Message stored: "' + txtMessage + '"');
+ }
+ }); }); });
+
+
+>>>>>>> 73c653fd17cb9e4f22361949bcfeae273ea1ec25
 /*
 router.route('/message')
         .post(function(req,res,next){
